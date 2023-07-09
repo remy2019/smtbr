@@ -6,7 +6,11 @@ use inquire::{
 };
 
 pub fn newcomer() -> Result<(), Box<dyn std::error::Error>> {
-    std::process::Command::new("clear").status().unwrap();
+    if cfg!(windows) {
+        std::process::Command::new("cls").status().unwrap();
+    } else {
+        std::process::Command::new("clear").status().unwrap();
+    }
     println!("{}", "\u{2500}".repeat(20));
     println!("Welcome to SMTBR, a Strategy Management Test Bank study helper with problem Randomization.");
     println!();
@@ -52,7 +56,8 @@ pub fn home() -> Result<(), Box<dyn std::error::Error>> {
         "Quit",
     ];
 
-    println!("Welcome to SMTBR!\n");
+    println!("Welcome to SMTBR!");
+    println!();
     let ans: Result<&str, InquireError> =
         Select::new("What are you going to do?", options).prompt();
 

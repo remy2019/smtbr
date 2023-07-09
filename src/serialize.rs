@@ -15,15 +15,12 @@ pub fn serialize_problems() -> Result<(), Box<dyn std::error::Error>> {
 
     for i in 1..=12 {
         let mut problem_set = vec![];
-        let mut file = Docx::open(format!("tb/barney_smca6_tif_{:02}.docx", i))?;
+        let mut path = String::from("tb");
+        path.push(std::path::MAIN_SEPARATOR);
+        path.push_str(&format!("barney_smca6_tif_{:02}.docx", i));
+        let mut file = Docx::open(path)?;
         let mut text = String::new();
         let _ = file.read_to_string(&mut text);
-        let f = std::fs::OpenOptions::new()
-            .write(true)
-            .create(true)
-            .open(format!("tb/barney_smca6_tif_{:02}.txt", i))
-            .expect("Couldn't open file");
-        std::fs::write(format!("tb/barney_smca6_tif_{:02}.txt", i), &text)?;
         let mut iter = re_problems.captures_iter(&text);
         while let Some(problem) = iter.next() {
             problem_set.push(String::from(&problem[0]));
