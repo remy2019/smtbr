@@ -7,10 +7,25 @@ use inquire::{
 
 pub fn newcomer() -> Result<(), Box<dyn std::error::Error>> {
     if cfg!(windows) {
-        std::process::Command::new("cls").status().unwrap();
+        std::process::Command::new("cmd")
+            .arg("/C")
+            .arg("cls")
+            .status()
+            .unwrap();
     } else {
         std::process::Command::new("clear").status().unwrap();
     }
+    println!(
+        r" ________  _____ ______   _________  ________  ________     
+|\   ____\|\   _ \  _   \|\___   ___\\   __  \|\   __  \    
+\ \  \___|\ \  \\\__\ \  \|___ \  \_\ \  \|\ /\ \  \|\  \   
+ \ \_____  \ \  \\|__| \  \   \ \  \ \ \   __  \ \   _  _\  
+  \|____|\  \ \  \    \ \  \   \ \  \ \ \  \|\  \ \  \\  \| 
+    ____\_\  \ \__\    \ \__\   \ \__\ \ \_______\ \__\\ _\ 
+   |\_________\|__|     \|__|    \|__|  \|_______|\|__|\|__|
+   \|_________|                                             
+                                                            "
+    );
     println!("{}", "\u{2500}".repeat(20));
     println!("Welcome to SMTBR, a Strategy Management Test Bank study helper with problem Randomization.");
     println!();
@@ -44,6 +59,17 @@ pub fn newcomer() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn home() -> Result<(), Box<dyn std::error::Error>> {
+    println!(
+        r" ________  _____ ______   _________  ________  ________     
+|\   ____\|\   _ \  _   \|\___   ___\\   __  \|\   __  \    
+\ \  \___|\ \  \\\__\ \  \|___ \  \_\ \  \|\ /\ \  \|\  \   
+ \ \_____  \ \  \\|__| \  \   \ \  \ \ \   __  \ \   _  _\  
+  \|____|\  \ \  \    \ \  \   \ \  \ \ \  \|\  \ \  \\  \| 
+    ____\_\  \ \__\    \ \__\   \ \__\ \ \_______\ \__\\ _\ 
+   |\_________\|__|     \|__|    \|__|  \|_______|\|__|\|__|
+   \|_________|                                             
+                                                            "
+    );
     println!();
     println!("{}", "\u{2500}".repeat(20));
 
